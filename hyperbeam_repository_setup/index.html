@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://permaweb.github.io/setup_hyperbeam/">
+        <link rel="canonical" href="https://permaweb.github.io/hyperbeam_repository_setup/">
       
       
-        <link rel="prev" href="../compile_wasm/">
+        <link rel="prev" href="../wasm_compiler_setup/">
       
       
-        <link rel="next" href="../running_hyperbeam/">
+        <link rel="next" href="../running_tests_with_your_custom_wasm/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Setup Hyperbeam - Hyberbeam Docs</title>
+        <title>Hyperbeam Repository Setup - Hyberbeam Docs</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#building-wasm-compiler" class="md-skip">
+        <a href="#hyperbeam-repository-setup" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Setup Hyperbeam
+              Hyperbeam Repository Setup
             
           </span>
         </div>
@@ -387,32 +387,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../build_wasm_compiler/" class="md-nav__link">
+      <a href="../wasm_compiler_setup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Build Wasm Compiler
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../compile_wasm/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Compile To Wasm
+    WASM Compiler Setup
   </span>
   
 
@@ -438,15 +417,99 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Hyperbeam Repository Setup
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Setup Hyperbeam
+    Hyperbeam Repository Setup
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-clone-the-hyperbeam-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Clone the Hyperbeam Repository
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-compile-the-code-with-rebar3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Compile the Code with Rebar3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-run-hyperbeam-with-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Run Hyperbeam with Shell
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-test-hyperbeam-with-eunit" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Test Hyperbeam with EUnit
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-running-a-specific-module-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Running a Specific Module Test
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-running-a-specific-test-in-a-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Running a Specific Test in a Module
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -460,11 +523,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_hyperbeam/" class="md-nav__link">
+      <a href="../running_tests_with_your_custom_wasm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Running Hyperbeam
+    Running Tests with Your Custom WASM
   </span>
   
 
@@ -501,6 +564,68 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-clone-the-hyperbeam-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Clone the Hyperbeam Repository
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-compile-the-code-with-rebar3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Compile the Code with Rebar3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-run-hyperbeam-with-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Run Hyperbeam with Shell
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-test-hyperbeam-with-eunit" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Test Hyperbeam with EUnit
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-running-a-specific-module-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Running a Specific Module Test
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-running-a-specific-test-in-a-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Running a Specific Test in a Module
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -517,7 +642,40 @@
   
 
 
-<h1 id="building-wasm-compiler"><strong>Building Wasm Compiler</strong></h1>
+<h1 id="hyperbeam-repository-setup"><strong>Hyperbeam Repository Setup</strong></h1>
+<p>This guide provides step-by-step instructions for setting up and testing Hyperbeam.</p>
+<h2 id="1-clone-the-hyperbeam-repository"><strong>1. Clone the Hyperbeam Repository</strong></h2>
+<p>First, clone the <code>permaweb/Hyperbeam</code> repository from GitHub:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/permaweb/HyperBEAM
+</span></code></pre></div>
+<p>Navigate to the project directory:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>HyperBEAM
+</span></code></pre></div>
+<h2 id="2-compile-the-code-with-rebar3"><strong>2. Compile the Code with Rebar3</strong></h2>
+<p>To compile the Hyperbeam code, you’ll need to use Rebar3. Run the following command to compile the project:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>rebar3<span class="w"> </span>compile
+</span></code></pre></div>
+<p>This will compile the necessary code to get Hyperbeam up and running.</p>
+<h2 id="3-run-hyperbeam-with-shell"><strong>3. Run Hyperbeam with Shell</strong></h2>
+<p>Once the code is compiled, you can start the Hyperbeam shell with Rebar3:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>rebar3<span class="w"> </span>shell
+</span></code></pre></div>
+<p>This command will start an interactive Erlang shell where you can interact with Hyperbeam.</p>
+<h2 id="4-test-hyperbeam-with-eunit"><strong>4. Test Hyperbeam with EUnit</strong></h2>
+<p>To run the unit tests for Hyperbeam, use the following Rebar3 command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>rebar3<span class="w"> </span>eunit
+</span></code></pre></div>
+<p>This will execute the EUnit tests and provide the results in your terminal.</p>
+<h2 id="5-running-a-specific-module-test"><strong>5. Running a Specific Module Test</strong></h2>
+<p>To run tests for a specific module, use the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>rebar3<span class="w"> </span>eunit<span class="w"> </span>--module<span class="w"> </span>hb_converge
+</span></code></pre></div>
+<p>This will run the tests for the <code>hb_converge</code> module.</p>
+<h2 id="6-running-a-specific-test-in-a-module"><strong>6. Running a Specific Test in a Module</strong></h2>
+<p>To run a specific test within a module, use the <code>rebar3 shell</code> command with <code>eunit:test</code>. For example, to run the <code>path_test</code> in the <code>hb_converge</code> module:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>rebar3<span class="w"> </span>shell<span class="w"> </span>--eval<span class="w"> </span><span class="s2">&quot;eunit:test(hb_converge, [{tests, [path_test]}])&quot;</span>
+</span></code></pre></div>
+<p>This command will execute the <code>path_test</code> within the <code>hb_converge</code> module.</p>
 
 
 
@@ -553,7 +711,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../compile_wasm/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Compile To Wasm">
+          <a href="../wasm_compiler_setup/" class="md-footer__link md-footer__link--prev" aria-label="Previous: WASM Compiler Setup">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -563,20 +721,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Compile To Wasm
+                WASM Compiler Setup
               </div>
             </div>
           </a>
         
         
           
-          <a href="../running_hyperbeam/" class="md-footer__link md-footer__link--next" aria-label="Next: Running Hyperbeam">
+          <a href="../running_tests_with_your_custom_wasm/" class="md-footer__link md-footer__link--next" aria-label="Next: Running Tests with Your Custom WASM">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Running Hyperbeam
+                Running Tests with Your Custom WASM
               </div>
             </div>
             <div class="md-footer__button md-icon">

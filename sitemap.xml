@@ -6,17 +6,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://permaweb.github.io/build_wasm_compiler/</loc>
-         <lastmod>2024-12-15</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://permaweb.github.io/character/</loc>
-         <lastmod>2024-12-15</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://permaweb.github.io/compile_wasm/</loc>
+         <loc>https://permaweb.github.io/hyperbeam_repository_setup/</loc>
          <lastmod>2024-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -26,12 +16,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://permaweb.github.io/running_hyperbeam/</loc>
+         <loc>https://permaweb.github.io/running_tests_with_your_custom_wasm/</loc>
          <lastmod>2024-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://permaweb.github.io/setup_hyperbeam/</loc>
+         <loc>https://permaweb.github.io/wasm_compiler_setup/</loc>
          <lastmod>2024-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>

@@ -14,7 +14,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../build_wasm_compiler/">
+        <link rel="next" href="../wasm_compiler_setup/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -371,21 +371,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Install Docker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installation-instructions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation Instructions:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -399,7 +384,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#installation-instructions_1" class="md-nav__link">
+  <a href="#installation-instructions" class="md-nav__link">
     <span class="md-ellipsis">
       Installation Instructions:
     </span>
@@ -418,21 +403,6 @@
       3. (Optional for AOT) Install LLVM and WAMRC
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="3. (Optional for AOT) Install LLVM and WAMRC">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installation-instructions_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation Instructions:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -499,11 +469,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../build_wasm_compiler/" class="md-nav__link">
+      <a href="../wasm_compiler_setup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Build Wasm Compiler
+    WASM Compiler Setup
   </span>
   
 
@@ -520,11 +490,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../compile_wasm/" class="md-nav__link">
+      <a href="../hyperbeam_repository_setup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Compile To Wasm
+    Hyperbeam Repository Setup
   </span>
   
 
@@ -541,32 +511,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_hyperbeam/" class="md-nav__link">
+      <a href="../running_tests_with_your_custom_wasm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Setup Hyperbeam
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../running_hyperbeam/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Running Hyperbeam
+    Running Tests with Your Custom WASM
   </span>
   
 
@@ -616,21 +565,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Install Docker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installation-instructions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation Instructions:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -644,7 +578,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#installation-instructions_1" class="md-nav__link">
+  <a href="#installation-instructions" class="md-nav__link">
     <span class="md-ellipsis">
       Installation Instructions:
     </span>
@@ -663,21 +597,6 @@
       3. (Optional for AOT) Install LLVM and WAMRC
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="3. (Optional for AOT) Install LLVM and WAMRC">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installation-instructions_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation Instructions:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -702,102 +621,30 @@
 <h1 id="prerequisites"><strong>Prerequisites</strong></h1>
 <p>Before you can start setting up and running the WASM compiler and Hyperbeam repository, make sure you have the following tools installed:</p>
 <h2 id="1-install-docker"><strong>1. Install Docker</strong></h2>
-<p>Docker is required to create and manage isolated environments for building and running your projects.</p>
-<h3 id="installation-instructions"><strong>Installation Instructions:</strong></h3>
-<ul>
-<li><strong>On Linux:</strong></li>
-<li>Update your package index:<br />
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</span></code></pre></div></li>
-<li>Install Docker:<br />
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>docker.io
-</span></code></pre></div></li>
-<li>
-<p>Add your user to the Docker group (optional, for running Docker without <code>sudo</code>):<br />
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
-</span></code></pre></div></p>
-</li>
-<li>
-<p><strong>On macOS:</strong></p>
-</li>
-<li>Download Docker from the official site: <a href="https://www.docker.com/products/docker-desktop">Docker Desktop for Mac</a>.</li>
-<li>
-<p>Follow the instructions on the website to complete the installation.</p>
-</li>
-<li>
-<p><strong>On Windows:</strong></p>
-</li>
-<li>Download Docker Desktop for Windows: <a href="https://www.docker.com/products/docker-desktop">Docker Desktop for Windows</a>.</li>
-<li>Follow the installation guide provided on the website.</li>
-</ul>
-<p>For detailed installation instructions and troubleshooting, refer to the official Docker documentation: <a href="https://docs.docker.com/get-docker/">Install Docker</a>.</p>
+<p>Docker is required to create and manage isolated environments for building and running your projects, including compiling the WASM. It provides a containerized environment where the necessary tools and dependencies for compiling the WASM are installed. You will use Docker to build the Docker image required for compiling your source code into a WASM file.</p>
 <h2 id="2-install-erlang-and-rebar3"><strong>2. Install Erlang and Rebar3</strong></h2>
 <p>Erlang is a key component for building and running projects that require concurrent, distributed systems. Rebar3 is a build tool for Erlang projects.</p>
-<h3 id="installation-instructions_1"><strong>Installation Instructions:</strong></h3>
+<h3 id="installation-instructions"><strong>Installation Instructions:</strong></h3>
 <ul>
-<li><strong>On Linux (Debian-based):</strong></li>
-<li>Install Erlang:<br />
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>erlang
-</span></code></pre></div></li>
 <li>
-<p>Install Rebar3:<br />
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>wget<span class="w"> </span>https://github.com/erlang/rebar3/releases/download/3.16.0/rebar3-3.16.0.tar.gz
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>tar<span class="w"> </span>xzvf<span class="w"> </span>rebar3-3.16.0.tar.gz
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>sudo<span class="w"> </span>mv<span class="w"> </span>rebar3<span class="w"> </span>/usr/local/bin
+<p><strong>Prerequisites:</strong>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libssl-dev<span class="w"> </span>ncurses-dev<span class="w"> </span>make<span class="w"> </span>cmake<span class="w"> </span>gcc<span class="w"> </span>g++
 </span></code></pre></div></p>
 </li>
 <li>
-<p><strong>On macOS:</strong></p>
-</li>
-<li>Install Erlang using Homebrew:<br />
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>brew<span class="w"> </span>install<span class="w"> </span>erlang
-</span></code></pre></div></li>
-<li>
-<p>Install Rebar3:<br />
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>brew<span class="w"> </span>install<span class="w"> </span>rebar3
+<p><strong>Install Erlang:</strong>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/erlang/otp.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>otp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>maint-27<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./configure<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>-j8<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
 </span></code></pre></div></p>
 </li>
 <li>
-<p><strong>On Windows:</strong></p>
+<p><strong>Install Rebar3:</strong>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/erlang/rebar3.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rebar3<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./bootstrap<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>mv<span class="w"> </span>rebar3<span class="w"> </span>/usr/local/bin/
+</span></code></pre></div></p>
 </li>
-<li>Download the Erlang installer from the official site: <a href="https://www.erlang.org/downloads">Erlang/OTP</a>.</li>
-<li>Install Rebar3 by downloading the latest release from the <a href="https://github.com/erlang/rebar3/releases">Rebar3 GitHub Releases Page</a>.</li>
 </ul>
-<p>For more details on installation and version compatibility, refer to the official documentation:
-- <a href="https://www.erlang.org/doc/getting_started/intro.html">Install Erlang</a>
-- <a href="https://www.rebar3.org/">Install Rebar3</a></p>
 <h2 id="3-optional-for-aot-install-llvm-and-wamrc"><strong>3. (Optional for AOT) Install LLVM and WAMRC</strong></h2>
-<p>If you plan to work with Ahead-of-Time (AOT) compilation, you will need to install LLVM and the WAMRC compiler.</p>
-<h3 id="installation-instructions_2"><strong>Installation Instructions:</strong></h3>
-<ul>
-<li><strong>On Linux:</strong></li>
-<li>Install LLVM:<br />
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>llvm
-</span></code></pre></div></li>
-<li>
-<p>Install WAMRC (WebAssembly Machine Runtime Compiler):<br />
-    Follow the instructions from the <a href="https://github.com/wasmerio/wamrc">WAMRC GitHub repository</a>.</p>
-</li>
-<li>
-<p><strong>On macOS:</strong></p>
-</li>
-<li>Install LLVM using Homebrew:<br />
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>brew<span class="w"> </span>install<span class="w"> </span>llvm
-</span></code></pre></div></li>
-<li>
-<p>Install WAMRC:<br />
-    Follow the instructions from the <a href="https://github.com/wasmerio/wamrc">WAMRC GitHub repository</a>.</p>
-</li>
-<li>
-<p><strong>On Windows:</strong></p>
-</li>
-<li>Download LLVM from the official site: <a href="https://releases.llvm.org/download.html">LLVM Downloads</a>.</li>
-<li>Install WAMRC by following the instructions from the <a href="https://github.com/wasmerio/wamrc">WAMRC GitHub repository</a>.</li>
-</ul>
-<p>For more details on installation and configuration of these tools, refer to the respective official documentation for LLVM and WAMRC.</p>
-<hr />
-<p>Once you have installed the prerequisites, you will be ready to proceed with the setup and running of the WASM compiler and Hyperbeam repository.</p>
+<p>Coming Soon...</p>
 
 
 
@@ -850,13 +697,13 @@
         
         
           
-          <a href="../build_wasm_compiler/" class="md-footer__link md-footer__link--next" aria-label="Next: Build Wasm Compiler">
+          <a href="../wasm_compiler_setup/" class="md-footer__link md-footer__link--next" aria-label="Next: WASM Compiler Setup">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Build Wasm Compiler
+                WASM Compiler Setup
               </div>
             </div>
             <div class="md-footer__button md-icon">
