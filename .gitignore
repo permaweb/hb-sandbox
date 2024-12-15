@@ -1,0 +1,10 @@
+*process.wasm
+*process.js
+wamr
+build_wamr_compiler.sh
+build-install_llvm.sh
+wamrc
+
+.vscode/
+
+docs/site/

@@ -1,0 +1,221 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+import glob
+import shutil
+from urllib.parse import unquote
+from shlex import quote
+import shlex
+
+sys.path.append("/usr/local/ao-module")
+
+from ao_module_lib.definition import Definition
+from ao_module_lib.config import Config
+from ao_module_lib.helper import (
+    is_lua_source_file,
+    is_c_source_file,
+    is_c_header_file,
+    is_rust_source_file,
+    shell_exec,
+    debug_print,
+)
+
+from ao_module_lib.languages.c import inject_c_files
+from ao_module_lib.languages.rust import inject_rust_files
+from ao_module_lib.languages.lua import inject_lua_files
+from ao_module_lib.libraries import load_libraries, LUAROCKS_LOCAL_MODULE_DIR
+
+
+def determine_language():
+    lang = "lua"
+    langs = []
+    # Get all source files
+    files = glob.glob("/src/**/*", recursive=True)
+    # Loop through all files and determine the language
+    for file in files:
+        if is_lua_source_file(file) and "lua" not in langs:
+            langs.append("lua")
+        elif (is_c_source_file(file)) and "c" not in langs:
+            langs.append("c")
+        elif is_rust_source_file(file) and "rust" not in langs:
+            langs.append("rust")
+
+    # Check if multiple languages are detected
+    # if len(lang) > 1:
+    #     raise Exception('Multiple languages detected in the module')
+    if len(langs) == 0:
+        raise Exception("No language detected in the module")
+
+    if langs.count("lua") == 0 and langs.count("c") >= 1:
+        lang = "c"
+    elif langs.count("lua") == 0 and langs.count("rust") >= 1:
+        lang = "rust"
+    else:
+        lang = "lua"
+
+    # Return the language or default to lua
+    return lang
+
+
+def main():
+    # Load the definition file
+    definition = Definition("/opt/definition.yml")
+
+    # Load the config file
+    config = Config("/src/config.yml")
+
+    # Determine the language of the source files
+    language = determine_language()
+
+    # Read the main.c file into c_program
+    c_program = ""
+    with open("/opt/main.c", mode="r") as c:
+        c_program = c.read()
+
+    link_libraries = []
+    c_source_files = []
+    injected_lua_files = []
+    dependency_libraries = []
+
+    # Inject c files into c_program if language is c
+    if language == "c":
+        c_program = inject_c_files(definition, c_program, c_source_files)
+
+    # Inject rust files into c_program if language is rust
+    if language == "rust":
+        c_program = inject_rust_files(definition, c_program)
+
+    # Inject lua files into c_program always to load lua files and replace placeholders
+    if language == "lua":
+        c_program = inject_lua_files(definition, c_program, injected_lua_files)
+
+    # Load all libraries
+    c_program = load_libraries(
+        config,
+        definition,
+        c_program,
+        link_libraries,
+        c_source_files,
+        injected_lua_files,
+        dependency_libraries,
+    )
+
+    # Inject the lua files into the c program
+    c_program = c_program.replace("__INJECT_LUA_FILES__", "\n".join(injected_lua_files))
+
+    # Generate compile target file
+    debug_print("Start to generate complie.c")
+
+    with open("/tmp/compile.c", mode="w") as build:
+        build.write(c_program)
+
+    # Compile the module to a WASM file using emcc
+    debug_print("Start to compile as WASM")
+
+    # Setup the compile command
+
+    # os.environ['EMCC_ONLY_FORCED_STDLIBS'] = '1'
+
+    cmd = ["emcc", "-O3", "-g2"]
+    cmd.extend(shlex.split(os.environ.get("EMCC_FLAGS_BASE", "")))
+    cmd.extend(
+        [
+            "-sSTACK_SIZE=" + str(config.stack_size),
+            "-sINITIAL_MEMORY=" + str(config.initial_memory),
+            "-sALLOW_MEMORY_GROWTH=1",
+            "-sDETERMINISTIC=1",
+            "-sNODERAWFS=0",
+            "-sFORCE_FILESYSTEM=1",
+            "-msimd128",
+            "--pre-js",
+            "/opt/pre.js",
+            "-lcompiler_rt-wasm-sjlj",
+        ]
+    )
+
+    # cmd = ['emcc', '-O3',
+    #        '-g2',
+    #        #   '-s', 'MAIN_MODULE', # This is required to load dynamic libraries at runtime
+    #        '-s', 'ASYNCIFY=1',
+    #        '-s', 'STACK_SIZE=' + str(config.stack_size),
+    #        #   '-s', 'ASYNCIFY_STACK_SIZE=' + str(config.stack_size),
+    #        '-s', 'ALLOW_MEMORY_GROWTH=1',
+    #        '-s', 'INITIAL_MEMORY=' + str(config.initial_memory),
+    #        #   '-s', 'MAXIMUM_MEMORY=' + str(config.maximum_memory),
+    #        '-s', 'WASM=1',
+    #        '-s', 'MODULARIZE',
+    #        # '-s', 'FILESYSTEM=0',
+    #        '-s', 'DETERMINISTIC=1',
+    #        '-s', 'NODERAWFS=0',
+    #        '-s', 'FORCE_FILESYSTEM=1',
+    #        '-msimd128',
+    #        '--pre-js', '/opt/pre.js',
+    #        '-lcompiler_rt-wasm-sjlj'
+    #        ]
+
+    # If the target is 64 bit, add the MEMORY64 flag and link against 64 bit libraries
+    if config.target == 64:
+        cmd.extend(["-sMEMORY64=1"])
+        cmd.extend(["-I", quote("/lua-{}/src".format(os.environ.get("LUA_VERSION")))])
+        cmd.extend(
+            [quote("/lua-{}/src/liblua.a".format(os.environ.get("LUA_VERSION")))]
+        )
+    # If the target is 32 bit, link against 32 bit libraries
+    else:
+        cmd.extend(
+            ["-I", quote("/lua-{}-32/src".format(os.environ.get("LUA_VERSION")))]
+        )
+        cmd.extend(
+            [quote("/lua-{}-32/src/liblua.a".format(os.environ.get("LUA_VERSION")))]
+        )
+
+    # Link Rust library
+    if language == "rust":
+        cmd.extend(["-L/opt/aorustlib", "-l:libaorust.a"])
+
+    # cmd.extend(["-s", "ASSERTIONS=1"])
+    cmd.extend(definition.get_extra_args())
+
+    # Add the lua include path
+
+    # Add all c source files if there are any
+    for f in c_source_files:
+        cmd.append(quote(f))
+
+    # Add the compile file and link libraries
+    cmd.extend(["/tmp/compile.c"])
+    cmd.extend([quote(v.filepath) for v in link_libraries])
+    cmd.extend([quote(v.filepath) for v in dependency_libraries])
+    cmd.extend(config.get_extra_args())
+
+    # Export the main function and malloc for the runtime
+    cmd.extend(['-sEXPORTED_FUNCTIONS=["_malloc", "_main"]'])
+
+    # Export the runtime methods cwrap
+    cmd.extend(
+        [
+            "-lm",
+            "-ldl",
+            "-o",
+            definition.get_output_file(),
+            '-sEXPORTED_RUNTIME_METHODS=["cwrap"]',
+        ]
+    )
+
+    debug_print("Compile command is {}".format(" ".join(cmd)))
+    shell_exec(*cmd)
+
+    # add metering library
+    # meter_cmd = ['node', '/opt/node/apply-metering.cjs']
+    # shell_exec(*meter_cmd)
+    if config.keep_js is False:
+        shell_exec(*["rm", os.path.join(os.getcwd(), "process.js")])
+
+
+if __name__ == "__main__":
+    main()
+
+    # cleanup temporary module directory
+    if os.path.isdir(LUAROCKS_LOCAL_MODULE_DIR):
+        shutil.rmtree(LUAROCKS_LOCAL_MODULE_DIR)

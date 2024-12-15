@@ -1,0 +1,134 @@
+FROM emscripten/emsdk:3.1.65
+LABEL maintainer="tom wilson <tom@hyper.io>"
+
+# The working directory used by the base image is /src, so we can mount volumes to there
+# to expose files on the host to the ao container
+# 
+# https://github.com/emscripten-core/emsdk/blob/9b0db91883452051aca8deddc932363aab29060b/docker/Dockerfile#L120
+
+RUN apt-get update --fix-missing -qq -y
+RUN apt-get install -y curl vim make gcc libreadline6-dev libssl-dev zlib1g-dev zip unzip ccache
+
+ENV LUA_VERSION=5.3.4
+ENV LUAROCKS_VERSION=2.4.4
+ENV PYTHON_VERSION=3.6.6
+ENV EMCC_FLAGS_BASE="-sWASM=1 -sPURE_WASI=1 -fno-rtti -fno-exceptions -Wno-experimental -sSUPPORT_LONGJMP=wasm"
+ENV EMCC_PRE_LINK="${EMCC_FLAGS_BASE} -s ERROR_ON_UNDEFINED_SYMBOLS=0 " 
+ENV EMCC_LINK_FLAGS="${EMCC_FLAGS_BASE}"
+ENV EMCC_32="emcc ${EMCC_PRE_LINK}"
+ENV EMCC_64="emcc ${EMCC_PRE_LINK} -s MEMORY64=1"
+RUN embuilder --wasm64 build libcompiler_rt-wasm-sjlj
+
+# install deno
+# RUN curl -fsSL https://deno.land/x/install/install.sh | sh
+# RUN echo 'export DENO_INSTALL="/root/.deno"' >> $HOME/.bashrc
+# RUN echo 'export PATH="$DENO_INSTALL/bin:$PATH"' >> $HOME/.bashrc
+
+# Intall yaml
+RUN pip3 install pyyaml
+
+# Install lua runtime
+RUN cd / && \
+  curl -L http://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz | tar xzf - && \
+  cd /lua-${LUA_VERSION} && \
+  make linux test && \
+  make install
+
+# Install luarocks
+RUN cd / && \
+  curl -L https://luarocks.org/releases/luarocks-${LUAROCKS_VERSION}.tar.gz | tar xzf - && \
+  cd /luarocks-${LUAROCKS_VERSION} && \
+  ./configure && \
+  make build && \
+  make install
+
+# Install NodeJS
+ENV NODE_VERSION=18.17.0
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+ENV NVM_DIR=/root/.nvm
+RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
+ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
+RUN node --version
+RUN npm --version
+
+# Make a copy of the lua runtime for 32-bit
+RUN cp -r /lua-${LUA_VERSION} /lua-${LUA_VERSION}-32
+
+# And, re-compile lua with "generic WASM"
+RUN cd /lua-${LUA_VERSION} && \
+  make clean && \
+  make generic CC='${EMCC_64}'
+
+# And, re-compile lua with "generic WASM 32-bit"
+# Copy the contents of ./src/lua to the lua-5.3.4-32/src directory
+# COPY ./src/lua /lua-${LUA_VERSION}-32/src
+RUN cd /lua-${LUA_VERSION}-32 && \
+  make clean && \
+  make generic CC='${EMCC_32}'
+
+
+#############################
+##### Install Commands ######
+#############################
+
+# NOTE: Some commands do not require additional work
+# when building the image, but are still commented
+# here for posterity
+
+###############
+#### Init #####
+###############
+# The init command currently does not require running
+# within the ao container, and so requires no additional setup
+
+###############
+#### Repl #####
+###############
+# The repl command simply fires up lua repl, which is installed
+# as part of lua runtime above, and so requires no additional setup
+
+###############
+#### Build ####
+###############
+COPY ./src/ao-build-module /usr/local/bin/ao-build-module
+COPY ./src/ao_module_lib /usr/local/ao-module/ao_module_lib
+
+COPY ./src/core/ /opt/
+
+RUN mkdir -p /opt/src
+COPY ./src/json.lua /opt/src/json.lua
+# COPY ./src/ao.lua /opt/src/ao.lua
+# COPY ./src/pack.lua /opt/pack.lua
+
+RUN chmod +x /usr/local/bin/ao-build-module
+
+###################################
+# BUILD WeaveDrive Extension Helper
+###################################
+COPY ./src/aolibc /opt/aolibc
+## Build aolibc for 32-bit and rename to aolibc32
+RUN cd /opt/aolibc && make CC="${EMCC_32} -I/lua-5.3.4-32/src" && cp ./aolibc.a ./aolibc32.a
+RUN rm /opt/aolibc/aolibc.a
+RUN rm /opt/aolibc/aostdio.o
+# Build aolibc for 64-bit
+RUN cd /opt/aolibc && make CC="${EMCC_64} -I/lua-5.3.4/src"
+
+ENV CC='${EMCC_32}'
+ENV NM='/emsdk/upstream/bin/llvm-nm'
+
+###########################################
+### Publish, Bundler, Process, Contract ###
+###########################################
+# We first create a directory for the node impls to be placed
+# and dependencies installed
+# 
+# By running npm link, we allow any commands exposed by
+# the node module to be ran globally within the container
+RUN mkdir -p /opt/node
+COPY ./src/node /opt/node
+RUN cd /opt/node && \
+  npm install --omit="dev" && \
+  npm link
+

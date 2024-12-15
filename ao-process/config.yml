@@ -1,0 +1,9 @@
+# Target 64 or 32 bit
+target: 64
+# Keep the js file after compilation (true/false)
+keep_js: true
+# All values below are in bytes. For 64 mb use 1024*1024*64 which equals 67108864.
+# Initial memory must be atleast 4mb more than the stack size. 
+stack_size: 67108864
+initial_memory: 71303168
+maximum_memory: 536870912
