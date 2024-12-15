@@ -626,23 +626,21 @@
 <p>Erlang is a key component for building and running projects that require concurrent, distributed systems. Rebar3 is a build tool for Erlang projects.</p>
 <h3 id="installation-instructions"><strong>Installation Instructions:</strong></h3>
 <ul>
-<li>
-<p><strong>Prerequisites:</strong>
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libssl-dev<span class="w"> </span>ncurses-dev<span class="w"> </span>make<span class="w"> </span>cmake<span class="w"> </span>gcc<span class="w"> </span>g++
-</span></code></pre></div></p>
-</li>
-<li>
-<p><strong>Install Erlang:</strong>
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/erlang/otp.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>otp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>maint-27<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./configure<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>-j8<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
-</span></code></pre></div></p>
-</li>
-<li>
-<p><strong>Install Rebar3:</strong>
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/erlang/rebar3.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rebar3<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./bootstrap<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>mv<span class="w"> </span>rebar3<span class="w"> </span>/usr/local/bin/
-</span></code></pre></div></p>
-</li>
+<li><strong>Prerequisites:</strong></li>
 </ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libssl-dev<span class="w"> </span>ncurses-dev<span class="w"> </span>make<span class="w"> </span>cmake<span class="w"> </span>gcc<span class="w"> </span>g++
+</span></code></pre></div>
+<ul>
+<li><strong>Install Erlang:</strong></li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/erlang/otp.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>otp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>maint-27<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./configure<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>-j8<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
+</span></code></pre></div>
+<ul>
+<li><strong>Install Rebar3:</strong></li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/erlang/rebar3.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rebar3<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./bootstrap<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>mv<span class="w"> </span>rebar3<span class="w"> </span>/usr/local/bin/
+</span></code></pre></div>
 <h2 id="3-optional-for-aot-install-llvm-and-wamrc"><strong>3. (Optional for AOT) Install LLVM and WAMRC</strong></h2>
 <p>Coming Soon...</p>
 
