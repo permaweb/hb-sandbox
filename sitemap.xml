@@ -11,12 +11,22 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://permaweb.github.io/llama/</loc>
+         <lastmod>2024-12-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://permaweb.github.io/prerequisites/</loc>
          <lastmod>2024-12-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://permaweb.github.io/running_tests_with_your_custom_wasm/</loc>
+         <lastmod>2024-12-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://permaweb.github.io/sqlite3/</loc>
          <lastmod>2024-12-16</lastmod>
          <changefreq>daily</changefreq>
     </url>

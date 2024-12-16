@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://permaweb.github.io/running_tests_with_your_custom_wasm/">
+        <link rel="canonical" href="https://permaweb.github.io/sqlite3/">
       
       
-        <link rel="prev" href="../hyperbeam_repository_setup/">
+        <link rel="prev" href="../running_tests_with_your_custom_wasm/">
       
       
-        <link rel="next" href="../sqlite3/">
+        <link rel="next" href="../llama/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Running Tests with Your Custom WASM - Hyberbeam Docs</title>
+        <title>SQLite3 - Hyberbeam Docs</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#running-tests-with-your-custom-wasm" class="md-skip">
+        <a href="#using-sqlite3-with-hyperbeam" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Running Tests with Your Custom WASM
+              SQLite3
             
           </span>
         </div>
@@ -342,8 +342,6 @@
       
   
   
-    
-  
   
   
     
@@ -355,11 +353,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -373,7 +371,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Tutorial
@@ -426,6 +424,76 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../running_tests_with_your_custom_wasm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Running Tests with Your Custom WASM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
     
   
   
@@ -442,7 +510,7 @@
           
   
   <span class="md-ellipsis">
-    Running Tests with Your Custom WASM
+    SQLite3
   </span>
   
 
@@ -453,7 +521,7 @@
         
   
   <span class="md-ellipsis">
-    Running Tests with Your Custom WASM
+    SQLite3
   </span>
   
 
@@ -475,45 +543,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-follow-the-steps-from-the-wasm-compiler-setup-to-create-a-wasm" class="md-nav__link">
+  <a href="#1-download-the-sqlite3-libraries" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Follow the Steps from the WASM Compiler Setup to Create a WASM
+      1. Download the SQLite3 Libraries
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-copy-the-wasm-file-to-the-hyperbeam-repository" class="md-nav__link">
+  <a href="#2-extract-the-zip-and-add-the-libs-folder" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Copy the WASM File to the Hyperbeam Repository
+      2. Extract the ZIP and Add the Libs Folder
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-edit-the-hb_beamr_testerl-to-point-to-your-new-wasm" class="md-nav__link">
+  <a href="#3-rerun-the-compile_ao-processsh-command" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Edit the hb_beamr_test.erl to Point to Your New WASM
+      3. Rerun the compile_ao-process.sh Command
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-modify-or-add-tests-in-hb_beamr_testerl" class="md-nav__link">
+  <a href="#4-rename-the-processwasm-to-sqlitewasm" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Modify or Add Tests in hb_beamr_test.erl
+      4. Rename the process.wasm to sqlite.wasm
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-run-the-test" class="md-nav__link">
+  <a href="#5-copy-the-sqlitewasm-to-the-hyperbeam-testcustom-folder" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Run the Test
+      5. Copy the sqlite.wasm to the Hyperbeam ./test/custom/ Folder
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-add-a-test-case-for-sqlite-in-hb_beamr_testerl" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Add a Test Case for SQLite in hb_beamr_test.erl
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Test
     </span>
   </a>
   
@@ -523,74 +609,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-      
-        
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
-            
-  
-  <span class="md-ellipsis">
-    Modules
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            Modules
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../sqlite3/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    SQLite3
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -651,45 +669,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-follow-the-steps-from-the-wasm-compiler-setup-to-create-a-wasm" class="md-nav__link">
+  <a href="#1-download-the-sqlite3-libraries" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Follow the Steps from the WASM Compiler Setup to Create a WASM
+      1. Download the SQLite3 Libraries
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-copy-the-wasm-file-to-the-hyperbeam-repository" class="md-nav__link">
+  <a href="#2-extract-the-zip-and-add-the-libs-folder" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Copy the WASM File to the Hyperbeam Repository
+      2. Extract the ZIP and Add the Libs Folder
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-edit-the-hb_beamr_testerl-to-point-to-your-new-wasm" class="md-nav__link">
+  <a href="#3-rerun-the-compile_ao-processsh-command" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Edit the hb_beamr_test.erl to Point to Your New WASM
+      3. Rerun the compile_ao-process.sh Command
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-modify-or-add-tests-in-hb_beamr_testerl" class="md-nav__link">
+  <a href="#4-rename-the-processwasm-to-sqlitewasm" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Modify or Add Tests in hb_beamr_test.erl
+      4. Rename the process.wasm to sqlite.wasm
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-run-the-test" class="md-nav__link">
+  <a href="#5-copy-the-sqlitewasm-to-the-hyperbeam-testcustom-folder" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Run the Test
+      5. Copy the sqlite.wasm to the Hyperbeam ./test/custom/ Folder
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-add-a-test-case-for-sqlite-in-hb_beamr_testerl" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Add a Test Case for SQLite in hb_beamr_test.erl
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Test
     </span>
   </a>
   
@@ -713,62 +749,84 @@
   
 
 
-<h1 id="running-tests-with-your-custom-wasm"><strong>Running Tests with Your Custom WASM</strong></h1>
-<p>This guide walks you through the steps to create a WASM file, integrate it into the Hyperbeam repository, modify tests, and run them.</p>
-<h2 id="1-follow-the-steps-from-the-wasm-compiler-setup-to-create-a-wasm"><strong>1. Follow the Steps from the <a href="../wasm_compiler_setup/">WASM Compiler Setup</a> to Create a WASM</strong></h2>
-<p>Follow the instructions in the <a href="../wasm_compiler_setup/">WASM Compiler Setup</a> to clone the <code>hb-sandbox</code> repository, generate a Docker image, and compile the <code>ao-process</code> source code into a WASM file. Once you have the WASM file, you will use it in the next steps.</p>
-<h2 id="2-copy-the-wasm-file-to-the-hyperbeam-repository"><strong>2. Copy the WASM File to the Hyperbeam Repository</strong></h2>
-<p>After generating the WASM file, copy it to the <code>test</code> folder inside the Hyperbeam repository. You should place the file in the <code>./test</code> directory of the Hyperbeam repository:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cp<span class="w"> </span>/path/to/generated/wasm/file<span class="w"> </span>./test/custom/process.wasm
+<h1 id="using-sqlite3-with-hyperbeam"><strong>Using SQLite3 with Hyperbeam</strong></h1>
+<p>This guide provides the steps to integrate SQLite3 into your Hyperbeam environment, compile the necessary WASM file, and create a test case for SQLite3 functionality.</p>
+<h2 id="1-download-the-sqlite3-libraries"><strong>1. Download the SQLite3 Libraries</strong></h2>
+<p>First, download the SQLite3 libraries required for this setup:</p>
+<ul>
+<li><a href="../assets/modules/sqlite3_libs_hyperbeam.zip">Download SQLite3 Libs</a></li>
+</ul>
+<h2 id="2-extract-the-zip-and-add-the-libs-folder"><strong>2. Extract the ZIP and Add the Libs Folder</strong></h2>
+<p>Once the ZIP file is downloaded, extract it, and place the <code>libs</code> folder inside the <code>ao-process</code> directory.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>unzip<span class="w"> </span>sqlite3_libs_hyperbeam.zip
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mv<span class="w"> </span>libs<span class="w"> </span>./ao-process/
 </span></code></pre></div>
-<p>Ensure the file is accessible within the repository structure.</p>
-<h2 id="3-edit-the-hb_beamr_testerl-to-point-to-your-new-wasm"><strong>3. Edit the <code>hb_beamr_test.erl</code> to Point to Your New WASM</strong></h2>
-<p>In the <code>./src/hb_beamr_test.erl</code> file, locate the line:</p>
-<div class="language-erlang highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">-</span><span class="ni">define</span><span class="p">(</span><span class="no">WASM_CORE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test/interp/process.wasm&quot;</span><span class="p">).</span>
+<h2 id="3-rerun-the-compile_ao-processsh-command"><strong>3. Rerun the <code>compile_ao-process.sh</code> Command</strong></h2>
+<p>Now that the SQLite3 libraries are in place, you need to rerun the <code>compile_ao-process.sh</code> command to regenerate the <code>process.wasm</code> file with SQLite3 support.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./compile_ao-process.sh
 </span></code></pre></div>
-<p>Update this line to point to your newly copied WASM file. Ensure the path correctly reflects the location of the file inside the <code>test</code> folder (<code>test/custom/process.wasm</code>).</p>
-<h2 id="4-modify-or-add-tests-in-hb_beamr_testerl"><strong>4. Modify or Add Tests in <code>hb_beamr_test.erl</code></strong></h2>
-<p>You can modify existing tests or add new ones inside the <code>./src/hb_beamr_test.erl</code> file. For example, you can modify the <code>eval_test</code> function to use a different expression and assert that the result matches the expected value.</p>
-<p>Here is an example modification of the <code>eval_test</code>:</p>
-<div class="language-erlang highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c">% Test the `handle` function for correctness</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nf">eval_test</span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nv">WasmFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">?</span><span class="nv">WASM_CORE</span><span class="p">,</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nv">WasmBinary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">setup_env</span><span class="p">(</span><span class="nv">WasmFile</span><span class="p">),</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="o">?</span><span class="n">event</span><span class="p">(</span><span class="s">&quot;Running aos64_handle_test&quot;</span><span class="p">),</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="p">{</span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="nv">Port</span><span class="p">,</span><span class="w"> </span><span class="p">_</span><span class="nv">Imports</span><span class="p">,</span><span class="w"> </span><span class="p">_</span><span class="nv">Exports</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">hb_beamr</span><span class="p">:</span><span class="nf">start</span><span class="p">(</span><span class="nv">WasmBinary</span><span class="p">),</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nv">Env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gen_test_env</span><span class="p">(),</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nv">Msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gen_test_aos_msg</span><span class="p">(</span><span class="s">&quot;return 1+5&quot;</span><span class="p">),</span><span class="w"> </span><span class="c">% &lt;--- Update Here</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="c">%% Write data to WASM memory</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="p">{</span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="nv">EnvPtr</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">hb_beamr_io</span><span class="p">:</span><span class="nf">write_string</span><span class="p">(</span><span class="nv">Port</span><span class="p">,</span><span class="w"> </span><span class="nv">Env</span><span class="p">),</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="p">{</span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="nv">MsgPtr</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">hb_beamr_io</span><span class="p">:</span><span class="nf">write_string</span><span class="p">(</span><span class="nv">Port</span><span class="p">,</span><span class="w"> </span><span class="nv">Msg</span><span class="p">),</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="c">%% Call the &quot;handle&quot; function in the WASM</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="p">{</span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nv">ResultPtr</span><span class="p">]}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">hb_beamr</span><span class="p">:</span><span class="nf">call</span><span class="p">(</span><span class="nv">Port</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;handle&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nv">MsgPtr</span><span class="p">,</span><span class="w"> </span><span class="nv">EnvPtr</span><span class="p">]),</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="c">%% Read and parse the result</span>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="p">{</span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="nv">ResponseBin</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">hb_beamr_io</span><span class="p">:</span><span class="nf">read_string</span><span class="p">(</span><span class="nv">Port</span><span class="p">,</span><span class="w"> </span><span class="nv">ResultPtr</span><span class="p">),</span>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">parse_wasm_response</span><span class="p">(</span><span class="nv">ResponseBin</span><span class="p">)</span><span class="w"> </span><span class="k">of</span>
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">        </span><span class="p">{</span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="nv">Response</span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span>
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">            </span><span class="o">?</span><span class="n">event</span><span class="p">(</span><span class="nn">io_lib</span><span class="p">:</span><span class="nf">format</span><span class="p">(</span><span class="s">&quot;Response: </span><span class="si">~p</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nv">Response</span><span class="p">])),</span>
-</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">            </span><span class="o">?</span><span class="n">assertMatch</span><span class="p">(</span><span class="o">&lt;&lt;</span><span class="s">&quot;6&quot;</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w"> </span><span class="nv">Response</span><span class="p">);</span><span class="w">   </span><span class="c">% &lt;--- Update Here</span>
-</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">        </span><span class="p">{</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="nv">Reason</span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span>
-</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">            </span><span class="o">?</span><span class="n">event</span><span class="p">({</span><span class="s">&quot;Unexpected response&quot;</span><span class="p">,</span><span class="w"> </span><span class="nv">Reason</span><span class="p">}),</span>
-</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">            </span><span class="o">?</span><span class="n">assert</span><span class="p">(</span><span class="n">false</span><span class="p">)</span><span class="w">  </span><span class="c">% Fail the test explicitly</span>
-</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">    </span><span class="k">end</span><span class="p">,</span>
-</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
-</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">    </span><span class="c">%% Stop the WASM</span>
-</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">    </span><span class="nn">hb_beamr</span><span class="p">:</span><span class="nf">stop</span><span class="p">(</span><span class="nv">Port</span><span class="p">),</span>
-</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">    </span><span class="o">?</span><span class="n">event</span><span class="p">(</span><span class="s">&quot;aos64_handle_test passed&quot;</span><span class="p">).</span>
+<p>This will compile the <code>ao-process</code> source code and include the SQLite3 functionality.</p>
+<h2 id="4-rename-the-processwasm-to-sqlitewasm"><strong>4. Rename the <code>process.wasm</code> to <code>sqlite.wasm</code></strong></h2>
+<p>After the compilation is complete, rename the generated <code>process.wasm</code> file to <code>sqlite.wasm</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mv<span class="w"> </span>./process.wasm<span class="w"> </span>./sqlite.wasm
 </span></code></pre></div>
-<p>In this example, the expression <code>return 1+5</code> is tested, and the result should be <code>"6"</code>. You can change the expression to any other valid WASM code, and adjust the expected result accordingly.</p>
-<h2 id="5-run-the-test"><strong>5. Run the Test</strong></h2>
-<p>Once the tests are updated, you can run the tests using the following command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">HB_DEBUG</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>rebar3<span class="w"> </span>shell<span class="w"> </span>--eval<span class="w"> </span><span class="s2">&quot;eunit:test(hb_beamr_test, [verbose]).&quot;</span>
+<h2 id="5-copy-the-sqlitewasm-to-the-hyperbeam-testcustom-folder"><strong>5. Copy the <code>sqlite.wasm</code> to the Hyperbeam <code>./test/custom/</code> Folder</strong></h2>
+<p>Next, copy the <code>sqlite.wasm</code> file to the <code>./test/custom/</code> folder inside the Hyperbeam repository:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cp<span class="w"> </span>./sqlite.wasm<span class="w"> </span>&lt;HYPERBEAM_REPO&gt;/test/custom/
 </span></code></pre></div>
-<p>This command will start the Rebar3 shell, run the tests, and display verbose output, helping you to troubleshoot any issues that arise during testing.</p>
+<p>Ensure that the <code>sqlite.wasm</code> file is correctly placed in the <code>custom</code> folder.</p>
+<h2 id="6-add-a-test-case-for-sqlite-in-hb_beamr_testerl"><strong>6. Add a Test Case for SQLite in <code>hb_beamr_test.erl</code></strong></h2>
+<p>Now, you need to add a test case for SQLite functionality inside the <code>hb_beamr_test.erl</code> file. You can modify or add a test function like the following:</p>
+<div class="language-erlang highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nf">sql_test</span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nv">WasmFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test/custom/sqlite.wasm&quot;</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nv">WasmBinary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">setup_env</span><span class="p">(</span><span class="nv">WasmFile</span><span class="p">),</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="o">?</span><span class="n">event</span><span class="p">(</span><span class="s">&quot;Running aos64_performance_test&quot;</span><span class="p">),</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="p">{</span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="nv">Port</span><span class="p">,</span><span class="w"> </span><span class="p">_</span><span class="nv">Imports</span><span class="p">,</span><span class="w"> </span><span class="p">_</span><span class="nv">Exports</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">hb_beamr</span><span class="p">:</span><span class="nf">start</span><span class="p">(</span><span class="nv">WasmBinary</span><span class="p">),</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nv">Env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gen_test_env</span><span class="p">(),</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nv">Msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gen_test_aos_msg</span><span class="p">(</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="s">&quot;local json = require(&#39;json&#39;); &quot;</span><span class="w"> </span><span class="o">++</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="s">&quot;local sqlite = require(&#39;lsqlite3&#39;); &quot;</span><span class="w"> </span><span class="o">++</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="s">&quot;local db = sqlite.open(&#39;:memory:&#39;); &quot;</span><span class="w"> </span><span class="o">++</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">        </span><span class="s">&quot;db:exec(&#39;CREATE TABLE numbers(num)&#39;); &quot;</span><span class="w"> </span><span class="o">++</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span><span class="s">&quot;for i=1,2 do &quot;</span><span class="w"> </span><span class="o">++</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="s">&quot;    db:exec(&#39;INSERT INTO numbers VALUES (&#39;..i..&#39;)&#39;); &quot;</span><span class="w"> </span><span class="o">++</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">        </span><span class="s">&quot;end; &quot;</span><span class="w"> </span><span class="o">++</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">        </span><span class="s">&quot;t = {}; &quot;</span><span class="w"> </span><span class="o">++</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">        </span><span class="s">&quot;for a in db:nrows(&#39;select * from numbers&#39;) do table.insert(t, a) end; &quot;</span><span class="w"> </span><span class="o">++</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">        </span><span class="s">&quot;db:close(); &quot;</span><span class="w"> </span><span class="o">++</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">        </span><span class="s">&quot;return json.encode(t);&quot;</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">    </span><span class="p">),</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">    </span><span class="c">%% Write data to WASM memory</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">    </span><span class="p">{</span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="nv">EnvPtr</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">hb_beamr_io</span><span class="p">:</span><span class="nf">write_string</span><span class="p">(</span><span class="nv">Port</span><span class="p">,</span><span class="w"> </span><span class="nv">Env</span><span class="p">),</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">    </span><span class="p">{</span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="nv">MsgPtr</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">hb_beamr_io</span><span class="p">:</span><span class="nf">write_string</span><span class="p">(</span><span class="nv">Port</span><span class="p">,</span><span class="w"> </span><span class="nv">Msg</span><span class="p">),</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span><span class="c">%% Call the &quot;handle&quot; function in the WASM</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">    </span><span class="p">{</span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nv">ResultPtr</span><span class="p">]}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">hb_beamr</span><span class="p">:</span><span class="nf">call</span><span class="p">(</span><span class="nv">Port</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;handle&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nv">MsgPtr</span><span class="p">,</span><span class="w"> </span><span class="nv">EnvPtr</span><span class="p">]),</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">    </span><span class="c">%% Read and parse the result</span>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">    </span><span class="p">{</span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="nv">ResponseBin</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">hb_beamr_io</span><span class="p">:</span><span class="nf">read_string</span><span class="p">(</span><span class="nv">Port</span><span class="p">,</span><span class="w"> </span><span class="nv">ResultPtr</span><span class="p">),</span>
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">parse_wasm_response</span><span class="p">(</span><span class="nv">ResponseBin</span><span class="p">)</span><span class="w"> </span><span class="k">of</span>
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">        </span><span class="p">{</span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="nv">Response</span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span>
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">            </span><span class="o">?</span><span class="n">event</span><span class="p">(</span><span class="nn">io_lib</span><span class="p">:</span><span class="nf">format</span><span class="p">(</span><span class="s">&quot;Response: </span><span class="si">~p</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nv">Response</span><span class="p">])),</span>
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="w">            </span><span class="o">?</span><span class="n">assertMatch</span><span class="p">(</span><span class="o">&lt;&lt;</span><span class="s">&quot;[{</span><span class="se">\&quot;</span><span class="s">num</span><span class="se">\&quot;</span><span class="s">:1},{</span><span class="se">\&quot;</span><span class="s">num</span><span class="se">\&quot;</span><span class="s">:2}]&quot;</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w"> </span><span class="nv">Response</span><span class="p">);</span>
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="w">        </span><span class="p">{</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="nv">Reason</span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span>
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w">            </span><span class="o">?</span><span class="n">event</span><span class="p">({</span><span class="s">&quot;Unexpected response&quot;</span><span class="p">,</span><span class="w"> </span><span class="nv">Reason</span><span class="p">}),</span>
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w">            </span><span class="o">?</span><span class="n">assert</span><span class="p">(</span><span class="n">false</span><span class="p">)</span><span class="w">  </span><span class="c">% Fail the test explicitly</span>
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="w">    </span><span class="k">end</span><span class="p">,</span>
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="w">    </span><span class="c">%% Stop the WASM</span>
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="w">    </span><span class="nn">hb_beamr</span><span class="p">:</span><span class="nf">stop</span><span class="p">(</span><span class="nv">Port</span><span class="p">),</span>
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="w">    </span><span class="o">?</span><span class="n">event</span><span class="p">(</span><span class="s">&quot;aos64_sql_test passed&quot;</span><span class="p">).</span>
+</span></code></pre></div>
+<p>In this example, the test runs a simple SQLite query using an in-memory database, inserts values, and retrieves the results. The test checks that the values returned by the query match the expected result.</p>
+<h2 id="running-the-test"><strong>Running the Test</strong></h2>
+<p>Once the test case is added to <code>hb_beamr_test.erl</code>, you can run the test with the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nv">HB_DEBUG</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>rebar3<span class="w"> </span>shell<span class="w"> </span>--eval<span class="w"> </span><span class="s2">&quot;eunit:test(hb_beamr_test, [verbose]).&quot;</span>
+</span></code></pre></div>
+<p>This command will start the Rebar3 shell, execute the test, and provide verbose output to help you troubleshoot any issues.</p>
 <hr />
-<p>By following these steps, you will be able to integrate your custom WASM into the Hyperbeam repository, modify and add tests, and run them to verify the behavior of your system.</p>
+<p>By following these steps, you will have successfully integrated SQLite3 into your Hyperbeam project, added a test case for SQLite functionality, and verified the behavior through a test.</p>
 
 
 
@@ -804,7 +862,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../hyperbeam_repository_setup/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Hyperbeam Repository Setup">
+          <a href="../running_tests_with_your_custom_wasm/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Running Tests with Your Custom WASM">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -814,20 +872,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Hyperbeam Repository Setup
+                Running Tests with Your Custom WASM
               </div>
             </div>
           </a>
         
         
           
-          <a href="../sqlite3/" class="md-footer__link md-footer__link--next" aria-label="Next: SQLite3">
+          <a href="../llama/" class="md-footer__link md-footer__link--next" aria-label="Next: LLama (Coming Soon)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                SQLite3
+                LLama (Coming Soon)
               </div>
             </div>
             <div class="md-footer__button md-icon">
