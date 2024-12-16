@@ -12,6 +12,9 @@ nav:
     - "WASM Compiler Setup": 'wasm_compiler_setup.md'
     - "Hyperbeam Repository Setup": 'hyperbeam_repository_setup.md'
     - "Running Tests with Your Custom WASM": 'running_tests_with_your_custom_wasm.md'
+  - Modules:
+    - "SQLite3": 'sqlite3.md'
+    - "LLama (Coming Soon)": 'llama.md'
 
 markdown_extensions:
   - attr_list
